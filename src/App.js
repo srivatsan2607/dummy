@@ -1,54 +1,37 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import AppList from './components/AppList';
-function App() {
-  const items = [
+import axios from 'axios';
+
+
+function App ()
+{
+  const [ itemList, setItemList ] = useState( [] );
+  const favHandler = ( id ) =>
+  {
+    setItemList( itemList.map( element =>
     {
-      id: 1,
-      itemName: "Caesar's Salad",
-      description: "The original Caesar's Salad",
-      imageUrl: "/assets/images/1.jpg",
-      price: 12,
-      isFav: false
-    },
+      if ( element.id === id )
+      {
+        element.isFav = !element.isFav
+      }
+      return element
+    } ) );
+  }
+
+  useEffect( () =>
+  {
+    axios.get( "./data.json" ).then( ( res ) =>
     {
-      id: 2,
-      itemName: "Spaghetti Carbonara",
-      description: "Better than your nonna's! All local and fresh ingredients",
-      imageUrl: "/assets/images/2.jpg",
-      price: 15,
-      isFav: false
-    },
-    {
-      id: 3,
-      itemName: "Grilled Whole Fish",
-      description: "Fish of the day, grilled Whole with a side of vegetables.",
-      imageUrl: "/assets/images/3.jpg",
-      price: 20,
-      isFav: false
-    },
-    {
-      id: 4,
-      itemName: "Steak florentine",
-      description: "The original Caesar's Salad",
-      imageUrl: "/assets/images/4.jpg",
-      price: 12,
-      isFav: true
-    },
-  ]
-  const [itemList, setItemList] = useState(items);
-  const favHandler = (id) => {
-    setItemList(itemList.map(element => {
-       if(element.id === id) {
-           element.isFav = ! element.isFav
-       }
-       return element
-    }));
-}
+      console.log( res )
+      setItemList( res.data.data )
+    } )
+  }, [] )
+
   return (
     <div className="App">
-        <AppList items={itemList} favHandler={favHandler}/>
+      <AppList items={ itemList } favHandler={ favHandler } />
     </div>
   );
 }

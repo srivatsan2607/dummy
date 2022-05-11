@@ -1,18 +1,42 @@
-.App{
-  margin: auto 10rem ;
+.App {
+  margin: auto 5rem;
 }
-.tile{
-  border: 2px solid black;
+
+.card {
+  display: flex;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   margin: 1rem;
+
+}
+
+.tile {
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   align-items: center;
 }
-.tile .title-desc{
-  margin-left: 10rem;
+
+.tile .title-desc {
+  margin-left: 1rem;
 }
-div img{
+
+.tile .title-desc h2 {
+  margin-bottom: 5px;
+}
+
+.tile .title-desc p {
+  margin-top: 0 !important;
+}
+
+div img {
   height: 200px;
   width: 200px;
+}
+
+.favIcon {
+  float: right !important;
+  margin-right: 10px;
+  font-size: 20px;
 }
